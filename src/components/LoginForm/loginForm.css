@@ -1,0 +1,21 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.login-form input {
+    height: 45px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.submit-btn {
+    font-size: 2rem;
+    border-radius: 10px;
+    width: 200px;
+    padding: .75rem 0;
+}

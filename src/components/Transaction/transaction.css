@@ -1,0 +1,9 @@
+.transaction-row {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.transaction-row h4 {
+    margin-left: 50px;
+}
