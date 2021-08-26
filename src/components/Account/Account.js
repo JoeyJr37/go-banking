@@ -27,7 +27,7 @@ const Account = ({ total, monthly, transactions }) => {
                     <h4>Amount</h4>
                 </section>
                 {transactions.map(donor => {
-                    return <Transaction key={donor.id} donor={donor} />
+                    return <Transaction donor={donor} />
                 })}
             </section>
         </main>

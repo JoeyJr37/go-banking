@@ -3,8 +3,9 @@ import './transaction.css';
 
 const Transaction = ({donor}) => {
     return (
-        <section className='transaction-row'>
-            <h4>{donor.DepositeDate}</h4>
+        <section className='transaction-row' key={donor.IndividualProfileId}>
+            <h4>{donor.IndividualProfileId}</h4>
+            <h4>{donor.DepositDate}</h4>
             <h4>{donor.FullName}</h4>
             <h4>${donor.Amount}</h4>
         </section>

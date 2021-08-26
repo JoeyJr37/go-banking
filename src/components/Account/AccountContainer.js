@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import data from '../../data/MOCK_DATA';
 import Account from './Account';
 
 class AccountContainer extends Component{
@@ -7,14 +6,13 @@ class AccountContainer extends Component{
         super(props)
 
         this.state = {
-            data: data,
-            recurringDonors: [],
             totalAccountValue: '',
             monthlyCashFlow: '',
         }
     }
 
     calculateTotalAccountValue = () => {
+        const { data } = this.props;
         const amtArr = data.map(donor => donor.Amount);
         const totalAccountValue = amtArr.reduce((curr, acc) => {
             return curr + acc;
@@ -23,11 +21,26 @@ class AccountContainer extends Component{
     }
 
     calculateMonthlyCashFlow = () => {
-        const recurringDonors = data.filter(user => user.IsRecurringOrNotRecurring);
-        const monthlyCashFlow = recurringDonors.map(donor => donor.Amount).reduce((curr, acc) => {
-            return curr + acc
+        const { data, recurringDonors } = this.props;
+
+        console.log(recurringDonors);
+        
+        const mappedRecurringDonors = recurringDonors.map(donor => {
+            return data.find(donorObj => donorObj.IndividualProfileId === donor.IndividualProfileId)
+        });
+        
+        console.log(mappedRecurringDonors);
+
+        const recurringAmounts = mappedRecurringDonors.map(donor => donor.Amount);
+
+        const monthlyCashFlow = recurringAmounts.reduce((curr, acc) => {
+            return curr + acc;
         }, 0);
-        this.setState({ recurringDonors, monthlyCashFlow });
+
+        console.log(monthlyCashFlow);
+
+        this.setState({ monthlyCashFlow })
+        
     }
 
     componentDidMount(){
@@ -36,8 +49,9 @@ class AccountContainer extends Component{
     }
 
     render(){
-        // console.log(this.state);
-        const { data, totalAccountValue, monthlyCashFlow} = this.state;
+        
+        const { totalAccountValue, monthlyCashFlow} = this.state;
+        const { data, recurringDonors } = this.props;
 
         return (
             <Account 
