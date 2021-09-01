@@ -24,8 +24,17 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.home-page {
+  border: 2px solid black;
+  text-align: center;
+  height: 100vh;
+  font-size: 2rem;
+}
+
+.btn {
+  font-size: 2rem;
+  padding: 1rem 3rem;
+  border-radius: 10px;
 }
 
 @keyframes App-logo-spin {

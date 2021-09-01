@@ -13,6 +13,7 @@ const register = async (req, res) => {
         } else {
             const hash = bcrypt.hashSync(password); //default 10 salt
             const registeredUser = await db(req).create_user([username, hash, designationId]);
+            console.log(registeredUser);
             const user = registeredUser[0];
             req.session.user = {
                 id: user.designation_id

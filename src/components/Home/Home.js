@@ -1,30 +1,42 @@
 import React, { Component } from 'react';
-import './home.css';
-import LoginForm from '../LoginForm/LoginForm';
+import AccountContainer from '../Account/AccountContainer';
+import axios from 'axios';
 
 class Home extends Component{
     constructor(props){
         super(props)
 
         this.state = {
-            showLoginForm: false
+            data: [],
+            recurringDonors: [],
         }
     }
 
-    revealLoginForm = () => {
-        const { showLoginForm } = this.state;
-        this.setState({ showLoginForm: !showLoginForm })
+    componentDidMount(){
+        axios.post(`/api/account`)
+            .then(res => {
+                // this.setState({ data: res.data});
+                console.log(res);
+            }).catch(err => {
+                console.log(`Error retrieving data: ${err}`);
+            })
+        
+        axios.post('/api/account/recurring')
+            .then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(`Error retrieving recurring donors: ${err}`);
+            })
     }
 
     render(){
-        const { showLoginForm } = this.state;
+        const { data, recurringDonors } = this.state;
 
         return (
-            <div className='home-page'>
-                <h1>GLOBAL OFFICE BANK</h1>
-                {!showLoginForm && <button className='login-btn' onClick={this.revealLoginForm}>LOGIN</button>}
-                {showLoginForm && <LoginForm />}
-            </div>
+            <>
+                {/* <AccountContainer data={data} recurringDonors={recurringDonors} /> */}
+                <h1> Welcome to your Account </h1>
+            </>
         )
     }
 }

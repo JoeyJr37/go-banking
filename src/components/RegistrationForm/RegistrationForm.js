@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../redux/reducer';
-import { Route, withRouter } from 'react-router-dom';
-import './loginForm.css';
+import { register } from '../../redux/reducer';
 
-class LoginForm extends Component{
+class RegistrationForm extends Component{
     constructor(props){
         super(props)
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            designationId: ''
         }
     }
 
@@ -20,19 +19,18 @@ class LoginForm extends Component{
         this.setState(newState);
     }
 
-    submitLoginInfo = (e) => {
+    submitRegistrationInfo = (e) => {
         e.preventDefault();
-        const { username, password } = this.state;
-        this.props.login(username, password);
-        this.props.history.push('/home');
+        const { username, password, designationId } = this.state;
+        this.props.register(username, password, designationId);
     }
 
     render(){
 
-        const { username, password } = this.state;
+        const { username, password, designationId } = this.state;
 
         return (
-            <form className='login-form'>
+            <form className='registration-form'>
                 <label>
                     Username: 
                     <input value={username} name='username' onChange={this.handleChange} />
@@ -41,10 +39,14 @@ class LoginForm extends Component{
                     Password:
                     <input value={password} name='password' onChange={this.handleChange} />
                 </label>
-                <button onClick={this.submitLoginInfo} className='submit-btn'> SUBMIT </button>
+                <label>
+                    Designation ID:
+                    <input value={designationId} name='designationId' onChange={this.handleChange} />
+                </label>
+                <button onClick={this.submitRegistrationInfo} className='submit-btn'> SUBMIT </button>
             </form>
         )
     }
 }
 
-export default withRouter(connect(null, { login} )(LoginForm));
+export default connect(null, { register } )(RegistrationForm);

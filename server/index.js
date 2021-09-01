@@ -26,19 +26,20 @@ massive({
 }).then(db => {
     app.set('db', db);
     console.log(`DB connection established!`);
+    // db.seed();
 }).catch(err => {
     console.log(`Error connecting to DB: ${err}`);
 })
 
 
 // REGISTRATION ENDPOINTS
-app.post('/api/register', register)
+app.post('/api/register', register);
 
 // LOGIN / AUTHORIZATION ENDPOINTS
 app.post('/api/login', loginUser);
 
 // RETRIEVE TRANSACTIONS ENDPOINTS
-app.get('/api/account/:id', retrieveTransactions);
-app.get('/api/account/recurring/:id', retrieveRecurringDonors);
+app.get('/api/account', retrieveTransactions);
+app.get('/api/account/recurring', retrieveRecurringDonors);
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
