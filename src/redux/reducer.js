@@ -17,34 +17,33 @@ export const register = (username, password, designationId) => {
 }
 
 export const login = (username, password) => {
-    const data = axios.post('/api/login', { username, password})
-        .then(res => {
-            console.log(res.data.id);
-            return res.data.id;
-        }).catch(err => {
-            console.log(err);
-    })
-    return {
-        type: LOGIN,
-        payload: data
-    }
+    const response = axios.post('/api/login', {username, password}).then(res => res.data)
+        .catch(err => console.log(err));
+        
+        return {
+            type: LOGIN,
+            payload: response
+        }
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action.payload);
-    
     switch(action.type){
 
         case `${LOGIN}_PENDING`: {
-            console.log(`Pending fulfillment...`)
+            return {
+                ...state,
+            }
         }
         case `${LOGIN}_FULFILLED`: {
             return {
-                designationId: action.payload
+                designationId: action.payload.id
             }
         }
         case `${LOGIN}_REJECTED`: {
-            console.log(`Error fulfilling promise!`)
+            return {
+                ...state,
+                errorMessages: action.paylod
+            }
         }
         default: {
             return state;

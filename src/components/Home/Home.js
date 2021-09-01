@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AccountContainer from '../Account/AccountContainer';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 class Home extends Component{
@@ -13,6 +14,9 @@ class Home extends Component{
     }
 
     componentDidMount(){
+        const { id } = this.props.id;
+        console.log(id);
+
         axios.get(`/api/account`)
             .then(res => {
                 this.setState({ data: res.data.recordset});
@@ -30,16 +34,29 @@ class Home extends Component{
             })
     }
 
+    logout = () => {
+        axios.post('/api/logout')
+          .then(() => {
+            this.props.history.push('/');
+          }).catch(err => console.log(err));
+      }
+
     render(){
         const { data, recurringDonors } = this.state;
 
         return (
             <>
+                <button onClick={this.logout}>LOGOUT</button>
                 <h1> Account # </h1>
                 <AccountContainer data={data} recurringDonors={recurringDonors} />
             </>
         )
     }
 }
+const mapStateToProps = (state) => {
 
-export default Home;
+    return {
+        id: state.designationId,
+    }
+}
+export default connect(mapStateToProps)(Home);

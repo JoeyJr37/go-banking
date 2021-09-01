@@ -9,7 +9,7 @@ const { CONNECTION_STRING, SESSION_SECRET } = process.env;
 const PORT = process.env.PORT || 5001;
 
 const { retrieveTransactions, retrieveRecurringDonors } = require('./controllers/transactionsController');
-const { register, loginUser } = require('./controllers/loginController');
+const { register, loginUser, logout } = require('./controllers/loginController');
 
 app.use(express.json());
 app.use(express.static(path.join('../build')));
@@ -37,6 +37,7 @@ app.post('/api/register', register);
 
 // LOGIN / AUTHORIZATION ENDPOINTS
 app.post('/api/login', loginUser);
+app.post('/api/logout', logout);
 
 // RETRIEVE TRANSACTIONS ENDPOINTS
 app.get('/api/account', retrieveTransactions);

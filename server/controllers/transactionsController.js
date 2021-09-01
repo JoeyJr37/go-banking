@@ -1,8 +1,6 @@
 const { DB_USER, DB_PASSWORD, DB_SERVER, DB_NAME } = process.env;
 
 const retrieveTransactions = (req, res ) => {
-    console.log(req.session.user);
-
     //  const { id } = req.session.user;
     const id = '248301';
 
@@ -29,7 +27,6 @@ const retrieveTransactions = (req, res ) => {
 }
 
 retrieveRecurringDonors = (req, res ) => {
-    console.log(req.session.user);
 
     //  const { id } = req.session.user;
     const id = '248301';
