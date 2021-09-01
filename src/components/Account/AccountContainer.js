@@ -23,13 +23,13 @@ class AccountContainer extends Component{
     calculateMonthlyCashFlow = () => {
         const { data, recurringDonors } = this.props;
 
-        console.log(recurringDonors);
+        // console.log(recurringDonors);
         
         const mappedRecurringDonors = recurringDonors.map(donor => {
             return data.find(donorObj => donorObj.IndividualProfileId === donor.IndividualProfileId)
         });
         
-        console.log(mappedRecurringDonors);
+        // console.log(mappedRecurringDonors);
 
         const recurringAmounts = mappedRecurringDonors.map(donor => donor.Amount);
 
@@ -37,7 +37,7 @@ class AccountContainer extends Component{
             return curr + acc;
         }, 0);
 
-        console.log(monthlyCashFlow);
+        // console.log(monthlyCashFlow);
 
         this.setState({ monthlyCashFlow })
         
@@ -56,8 +56,7 @@ class AccountContainer extends Component{
         return (
             <Account 
                 total={totalAccountValue} 
-                monthly={monthlyCashFlow}
-                transactions={data} />
+                monthly={monthlyCashFlow} />
             // <h2> Account Info </h2>
         )
     }

@@ -16,16 +16,16 @@ class App extends Component{
   }
 
   componentDidMount(){
-    axios.get('/api/my-account/248301')
-      .then(res => {
-        // console.log(res.data.recordset);
-        this.setState({ data: res.data.recordset})
-      })
-      .catch(err => console.log(err));
+    // axios.get('/api/my-account/248301')
+    //   .then(res => {
+    //     // console.log(res.data.recordset);
+    //     this.setState({ data: res.data.recordset})
+    //   })
+    //   .catch(err => console.log(err));
 
-    axios.get('/api/my-account/recurring/248301')
-      .then(res => this.setState({ recurringDonors: res.data.recordset }))
-      .catch(err => console.log(err));
+    // axios.get('/api/my-account/recurring/248301')
+    //   .then(res => this.setState({ recurringDonors: res.data.recordset }))
+    //   .catch(err => console.log(err));
   }
 
   render(){
@@ -35,7 +35,7 @@ class App extends Component{
     return (
       <div>
         <Home />
-        <AccountContainer data={data} recurringDonors={recurringDonors}/>
+        {/* <AccountContainer data={data} recurringDonors={recurringDonors}/> */}
       </div>
     )
   }
