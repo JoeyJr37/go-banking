@@ -13,17 +13,18 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        axios.post(`/api/account`)
+        axios.get(`/api/account`)
             .then(res => {
-                // this.setState({ data: res.data});
-                console.log(res);
+                this.setState({ data: res.data.recordset});
+                // console.log(res);
             }).catch(err => {
                 console.log(`Error retrieving data: ${err}`);
             })
         
-        axios.post('/api/account/recurring')
+        axios.get('/api/account/recurring')
             .then(res => {
-                console.log(res);
+                // console.log(res);
+                this.setState({ recurringDonors: res.data.recordset })
             }).catch(err => {
                 console.log(`Error retrieving recurring donors: ${err}`);
             })
@@ -34,8 +35,8 @@ class Home extends Component{
 
         return (
             <>
-                {/* <AccountContainer data={data} recurringDonors={recurringDonors} /> */}
-                <h1> Welcome to your Account </h1>
+                <h1> Account # </h1>
+                <AccountContainer data={data} recurringDonors={recurringDonors} />
             </>
         )
     }

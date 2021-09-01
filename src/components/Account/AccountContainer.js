@@ -49,13 +49,14 @@ class AccountContainer extends Component{
     }
 
     render(){
-        
+        const { data } = this.props;
         const { totalAccountValue, monthlyCashFlow} = this.state;
 
         return (
             <Account 
                 total={totalAccountValue} 
-                monthly={monthlyCashFlow} />
+                monthly={monthlyCashFlow} 
+                transactions={data} />
         )
     }
 }
