@@ -17,7 +17,7 @@ class AccountContainer extends Component{
         const totalAccountValue = amtArr.reduce((curr, acc) => {
             return curr + acc;
         }, 0);
-        
+        console.log(totalAccountValue);
         this.setState({ totalAccountValue });
     }
 
@@ -47,6 +47,13 @@ class AccountContainer extends Component{
     componentDidMount(){
         this.calculateTotalAccountValue();
         this.calculateMonthlyCashFlow();
+    }
+
+    componentDidUpdate(prevProps){
+        if (prevProps !== this.props){
+            this.calculateTotalAccountValue();
+            this.calculateMonthlyCashFlow();
+        }
     }
 
     render(){

@@ -31,8 +31,8 @@ class Auth extends Component{
                 {!showLoginForm && <button className='btn' onClick={this.revealLoginForm}>LOGIN</button>}
                 {showLoginForm && <LoginForm />}
 
-                {/* {!showRegistrationForm && <button className='btn' onClick={this.revealRegistrationForm}>Register</button>}
-                {showRegistrationForm && <RegistrationForm />} */}
+                {!showRegistrationForm && <button className='btn' onClick={this.revealRegistrationForm}>Register</button>}
+                {showRegistrationForm && <RegistrationForm />}
             </div>
         )
     }
