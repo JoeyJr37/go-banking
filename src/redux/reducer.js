@@ -19,7 +19,9 @@ export const register = (username, password, designationId) => {
 export const login = (username, password) => {
     const response = axios.post('/api/login', {username, password}).then(res => res.data)
         .catch(err => console.log(err));
-        
+    
+        console.log(response);
+
         return {
             type: LOGIN,
             payload: response
@@ -27,6 +29,8 @@ export const login = (username, password) => {
 }
 
 const reducer = (state = initialState, action) => {
+    console.log(action.payload);
+
     switch(action.type){
 
         case `${LOGIN}_PENDING`: {

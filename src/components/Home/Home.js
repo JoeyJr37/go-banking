@@ -16,8 +16,8 @@ class Home extends Component{
     componentDidMount(){
         const { id } = this.props.id;
         console.log(id);
-
-        axios.get(`/api/account`)
+        
+        axios.get(`/api/account/${id}`)
             .then(res => {
                 this.setState({ data: res.data.recordset});
                 // console.log(res);
@@ -25,7 +25,7 @@ class Home extends Component{
                 console.log(`Error retrieving data: ${err}`);
             })
         
-        axios.get('/api/account/recurring')
+        axios.get(`/api/account/recurring/${id}`)
             .then(res => {
                 // console.log(res);
                 this.setState({ recurringDonors: res.data.recordset })
@@ -54,6 +54,7 @@ class Home extends Component{
     }
 }
 const mapStateToProps = (state) => {
+    console.log(state);
 
     return {
         id: state.designationId,

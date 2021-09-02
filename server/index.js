@@ -40,7 +40,7 @@ app.post('/api/login', loginUser);
 app.post('/api/logout', logout);
 
 // RETRIEVE TRANSACTIONS ENDPOINTS
-app.get('/api/account', retrieveTransactions);
-app.get('/api/account/recurring', retrieveRecurringDonors);
+app.get('/api/account/:id', retrieveTransactions);
+app.get('/api/account/recurring/:id', retrieveRecurringDonors);
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
