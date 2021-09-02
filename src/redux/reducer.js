@@ -16,20 +16,31 @@ export const register = (username, password, designationId) => {
         })
 }
 
-export const login = (username, password) => {
-    const response = axios.post('/api/login', {username, password}).then(res => res.data)
-        .catch(err => console.log(err));
-    
-        console.log(response);
+// export const login = async (username, password) => {
+//         try {
+//             const response = await axios.post('/api/login', {username, password});
+//             console.log(response);
+            
+//             return {
+//                 type: LOGIN,
+//                 payload: response
+//             };
+//         } catch(err) {
+//                 console.log(`Error logging in user: ${err}`);
+//         }
+// }
 
-        return {
-            type: LOGIN,
-            payload: response
-        }
+export const login = (username, password) => {
+    const data = axios.post('/api/login', { username, password }).then(res => res.data);
+    console.log(data);
+
+    return {
+        type: LOGIN,
+        payload: data
+    }
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action.payload);
 
     switch(action.type){
 
@@ -46,7 +57,7 @@ const reducer = (state = initialState, action) => {
         case `${LOGIN}_REJECTED`: {
             return {
                 ...state,
-                errorMessages: action.paylod
+                errorMessages: action.payload
             }
         }
         default: {

@@ -3,9 +3,10 @@ const data = require('../data/MOCK_DATA');
 
 const retrieveTransactions = (req, res ) => {
     const { id } = req.params;
-    console.log(req.params);
+    // console.log(req.params);
 
     if (id == 1234){
+        // console.log(data);
         res.status(200).send(data);
     } else {
         const sql = require('mssql');
@@ -34,7 +35,7 @@ const retrieveTransactions = (req, res ) => {
 
 retrieveRecurringDonors = (req, res ) => {
     const { id } = req.params;
-    console.log(req.params);
+    // console.log(req.params);
 
     if (id == 1234){
         res.status(200).send(data);

@@ -17,18 +17,25 @@ class Home extends Component{
         const { id } = this.props.id;
         console.log(id);
         
+    }
+
+    request = () => {
+        const { id } = this.props;
+
         axios.get(`/api/account/${id}`)
             .then(res => {
-                this.setState({ data: res.data.recordset});
                 // console.log(res);
+                this.setState({ data: res.data })
+                // this.setState({ data: res.data.recordset});
             }).catch(err => {
-                console.log(`Error retrieving data: ${err}`);
+                console.log(`Error retrieving account data: ${err}`);
             })
-        
+    
         axios.get(`/api/account/recurring/${id}`)
             .then(res => {
                 // console.log(res);
-                this.setState({ recurringDonors: res.data.recordset })
+                this.setState({ data: res.data })
+                // this.setState({ recurringDonors: res.data.recordset })
             }).catch(err => {
                 console.log(`Error retrieving recurring donors: ${err}`);
             })
@@ -47,6 +54,7 @@ class Home extends Component{
         return (
             <>
                 <button onClick={this.logout}>LOGOUT</button>
+                <button onClick={this.request}>REQUEST INFO</button>
                 <h1> Account # </h1>
                 <AccountContainer data={data} recurringDonors={recurringDonors} />
             </>
@@ -55,7 +63,7 @@ class Home extends Component{
 }
 const mapStateToProps = (state) => {
     console.log(state);
-
+    
     return {
         id: state.designationId,
     }

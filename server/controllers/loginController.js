@@ -30,6 +30,8 @@ const loginUser = async (req, res ) => {
     try {
         const foundUser = await db(req).find_user(username);
         const existingUser = foundUser[0];
+        // console.log(existingUser);
+
         if (!existingUser){
             return res.status(401).send('User not found. Please register new user')
         } else {
@@ -40,6 +42,7 @@ const loginUser = async (req, res ) => {
                 req.session.user = {
                     id: existingUser.designation_id
                 }
+                // console.log(req.session.user);
                 return res.status(200).send(req.session.user)
             }
         }
